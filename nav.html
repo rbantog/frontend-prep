@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>nav bar</title>
+    <style>
+      .nav-bar {
+        width: 100%;
+        background: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        padding: 0px 10px;
+      }
+      .nav-bar ul {
+        padding: 0;
+        margin: 0;
+      }
+      .nav-bar li {
+        list-style: none;
+        display: inline-block;
+        padding: 20px 20px;
+      }
+      .nav-bar a {
+        text-decoration: none;
+        color: black;
+      }
+      .nav-bar a:visited {
+        text-decoration: none;
+        color: black;
+      }
+      .nav-bar a:hover {
+        text-decoration: underline;
+        color: blueviolet;
+      }
+      .sub-menu-header {
+        position: relative;
+      }
+      .sub-menu-header:hover .sub-menu {
+        display: flex;
+      }
+      .sub-menu {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        top: 35px;
+        left: 20px;
+        border: 1px solid black;
+        padding-left: 0px;
+      }
+      .sub-menu li {
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    navigation sample
+    <header class="nav-bar">
+      <ul>
+        <li><a href="/" target="_blank">home</a></li>
+        <li><a href="/" target="_blank">about</a></li>
+        <li><a href="/" target="_blank">portfolio</a></li>
+        <li><a href="/" target="_blank">contact</a></li>
+        <li class="sub-menu-header">
+          <a href="/" target="_blank">more</a>
+          <ul class="sub-menu">
+            <li><a href="/" target="_blank">item 1</a></li>
+            <li><a href="/" target="_blank">item 2</a></li>
+            <li><a href="/" target="_blank">item 3</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>to do list</title>
+    <style></style>
+    <script>
+      const list = [];
+      let counter = 0;
+
+      function addItem(e) {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        const itemText = data.get("new-item");
+        list.push({
+          id: counter,
+          text: itemText,
+        });
+
+        console.log("list: ", list);
+        const newItem = document.createElement("li");
+        newItem.innerHTML = itemText;
+        newItem.className = `item-${counter}`;
+        newItem.setAttribute("id", `Item-${counter}`);
+
+        const checkBox = document.createElement("input");
+        checkBox.className = `checkbox-${counter}`;
+        checkBox.type = "checkbox";
+        newItem.appendChild(checkBox);
+
+        const remove = document.createElement("a");
+        remove.href = `#`;
+        // remove.href = `javascript:remove(event, ${counter})`;
+        remove.setAttribute("onclick", `remove(event, ${counter})`);
+        remove.className = `remove-${counter}`;
+        remove.innerHTML = "X";
+        newItem.appendChild(remove);
+
+        const toDoList = document.getElementById("ToDo");
+        toDoList.appendChild(newItem);
+        counter++;
+
+        document.getElementById("New-Input").value = "";
+
+        return false;
+      }
+
+      function remove(e, id) {
+        e.preventDefault();
+        const listItem = document.getElementById(`Item-${id}`);
+        listItem.remove();
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>to do list</h1>
+    </header>
+    <form onsubmit="addItem(event)">
+      <ul id="ToDo"></ul>
+      <input name="new-item" id="New-Input" /><button type="submit">add</button>
+    </form>
+  </body>
+</html>

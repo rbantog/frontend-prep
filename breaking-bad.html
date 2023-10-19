@@ -1,0 +1,240 @@
+<html>
+  <head>
+    <title>breaking bad</title>
+    <style>
+      body {
+        background: black;
+        color: white;
+      }
+      .content {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+        text-align: center;
+      }
+      #logo {
+        color: #026635;
+        font-family: sans-serif;
+        font-size: 50px;
+        margin: 30px 0px;
+      }
+      #logo .element {
+        background-color: #026635;
+        color: white;
+        display: inline-block;
+        padding: 5px;
+        border: white solid 1px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 80px;
+        width: 80px;
+        height: 80px;
+      }
+    </style>
+    <script>
+      const ELEMENTS = [
+        "Ac",
+        "Al",
+        "Am",
+        "Sb",
+        "Ar",
+        "As",
+        "At",
+        "Ba",
+        "Bk",
+        "Be",
+        "Bi",
+        "Bh",
+        "B",
+        "Br",
+        "Cd",
+        "Ca",
+        "Cf",
+        "C",
+        "Ce",
+        "Cs",
+        "Cl",
+        "Cr",
+        "Co",
+        "Cn",
+        "Cu",
+        "Cm",
+        "Ds",
+        "Db",
+        "Dy",
+        "Es",
+        "Er",
+        "Eu",
+        "Fm",
+        "Fl",
+        "F",
+        "Fr",
+        "Gd",
+        "Ga",
+        "Ge",
+        "Au",
+        "Hf",
+        "Hs",
+        "He",
+        "Ho",
+        "H",
+        "In",
+        "I",
+        "Ir",
+        "Fe",
+        "Kr",
+        "La",
+        "Lr",
+        "Pb",
+        "Li",
+        "Lv",
+        "Lu",
+        "Mg",
+        "Mn",
+        "Mt",
+        "Md",
+        "Hg",
+        "Mo",
+        "Mc",
+        "Nd",
+        "Ne",
+        "Np",
+        "Ni",
+        "Nh",
+        "Nb",
+        "N",
+        "No",
+        "Og",
+        "Os",
+        "O",
+        "Pd",
+        "P",
+        "Pt",
+        "Pu",
+        "Po",
+        "K",
+        "Pr",
+        "Pm",
+        "Pa",
+        "Ra",
+        "Rn",
+        "Re",
+        "Rh",
+        "Rg",
+        "Rb",
+        "Ru",
+        "Rf",
+        "Sm",
+        "Sc",
+        "Sg",
+        "Se",
+        "Si",
+        "Ag",
+        "Na",
+        "Sr",
+        "S",
+        "Ta",
+        "Tc",
+        "Te",
+        "Ts",
+        "Tb",
+        "Tl",
+        "Th",
+        "Tm",
+        "Sn",
+        "Ti",
+        "W",
+        "U",
+        "V",
+        "Xe",
+        "Yb",
+        "Y",
+        "Zn",
+        "Zr",
+      ];
+      let firstName = "Breaking";
+      let lastName = "Bad";
+
+      function addToElement(id, content) {
+        const el = document.getElementById(id);
+        el.innerHTML = "";
+
+        content.forEach((c) => {
+          el.appendChild(c);
+        });
+      }
+
+      function createElement(symbol) {
+        const div = document.createElement("div");
+        div.classList.add("element");
+        div.innerHTML = symbol;
+
+        return div;
+      }
+
+      function findElement(word, id) {
+        for (let i = 0; i < word.length; i++) {
+          if (i + 1 < word.length) {
+            const potentialElement =
+              String(word[i]).toUpperCase() + String(word[i + 1]).toLowerCase();
+            if (ELEMENTS.indexOf(potentialElement) !== -1) {
+              addToElement(id, [
+                document.createTextNode(word.slice(0, i)),
+                createElement(potentialElement),
+                document.createTextNode(word.slice(i + 2)),
+              ]);
+              return;
+            }
+          }
+          const potentialElement = String(word[i]).toUpperCase();
+          if (ELEMENTS.indexOf(potentialElement) !== -1) {
+            addToElement(id, [
+              document.createTextNode(word.slice(0, i)),
+              createElement(potentialElement),
+              document.createTextNode(word.slice(i + 1)),
+            ]);
+            return;
+          }
+        }
+
+        return addToElement(id, [document.createTextNode(word)]);
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        console.log(data);
+        firstName = data.get("fname");
+        lastName = data.get("lname");
+        findElement(firstName, "first");
+        findElement(lastName, "last");
+
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="content">
+      <div id="logo">
+        <div id="first">
+          <div class="element">Br</div>
+          eaking
+        </div>
+        <div id="last">
+          <div class="element">Ba</div>
+          d
+        </div>
+      </div>
+      <div>
+        <form onsubmit="handleSubmit(event)">
+          <label for="fname">First name:</label>
+          <input type="text" id="fname" name="fname" required />
+          <br />
+          <label for="lname">Last name:</label>
+          <input type="text" id="lname" name="lname" required /><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
