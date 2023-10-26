@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <style>
+      .parent {
+        background-color: blue;
+        width: 400px;
+        height: 400px;
+        border: 1px black solid;
+      }
+      .child {
+        background-color: yellow;
+        width: 40px;
+        height: 40px;
+      }
+      .p1 {
+        position: relative;
+      }
+      .c1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .p2 {
+        position: relative;
+      }
+      .c2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      .p3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <code>
+      .p1 { position: relative; } .c1 { position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%); }
+    </code>
+    <div class="parent p1"><div class="child c1"></div></div>
+    <code>
+      .p2 { position: relative; } .c2 { position: absolute; left: 0; right: 0;
+      top: 0; bottom: 0; margin: auto; }
+    </code>
+    <div class="parent p2"><div class="child c2"></div></div>
+    <code
+      >.p3 { display: flex; justify-content: center; align-items: center;
+      }</code
+    >
+    <div class="parent p3"><div class="child c3"></div></div>
+  </body>
+</html>
